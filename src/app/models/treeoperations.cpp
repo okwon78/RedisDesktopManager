@@ -61,8 +61,8 @@ bool TreeOperations::loadDatabases(
 
       for (int index = lastDbIndex; index < dbScanLimit; index++) {
         try {
-          scanningResp =
-              connection->commandSync("select", QString::number(index));
+          scanningResp = connection->commandSync(
+              {"select", QString::number(index).toLatin1()});
         } catch (const RedisClient::Connection::Exception& e) {
           throw ConnectionsTree::Operations::Exception(
               QCoreApplication::translate("RDM", "Connection error: ") +
