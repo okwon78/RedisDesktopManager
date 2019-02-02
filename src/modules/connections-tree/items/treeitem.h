@@ -53,13 +53,13 @@ class TreeItem {
 
   virtual void cancelCurrentOperation();
 
-  virtual bool isLocked() const { return m_locked; }
+  virtual bool isLocked() const { return false; }
 
   virtual bool isEnabled() const = 0;
 
-  virtual bool isExpanded() const { return false; }
+  virtual bool isExpanded() const { return true; }
 
-  virtual bool canFetchMore() const { return false; }
+  virtual bool canFetchMore() const { return true; }
 
   virtual void fetchMore() {}
 

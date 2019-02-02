@@ -15,12 +15,12 @@ int main(int argc, char *argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 
-    #ifndef QT_DEBUG
+    //#ifndef QT_DEBUG
     QFileInfo appPath(QString::fromLocal8Bit(argv[0]));
     QString appDir(appPath.absoluteDir().path());
     QString crashReporterPath = QString("%1/crashreporter").arg(appDir.isEmpty() ? "." : appDir);
     CrashHandler::instance()->Init(QDir::homePath(), appPath.absoluteFilePath(), crashReporterPath);
-    #endif
+    //#endif
 
     Application a(argc, argv);
     a.initModels();

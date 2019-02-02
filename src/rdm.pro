@@ -11,7 +11,7 @@ TEMPLATE = app
 
 # Skip version file
 !exists( $$PWD/version.h ) {    
-    DEFINES += RDM_VERSION=\\\"2019.0.0\\\"
+    DEFINES += RDM_VERSION=\\\"0.9.999\\\"
 }
 
 SOURCES += \
@@ -71,8 +71,9 @@ win32 {
 unix:macx { # OSX
     QT += svg
     CONFIG += c++11
+    CONFIG += QT_NO_DEBUG_OUTPUT
 
-    debug: CONFIG-=app_bundle
+    release: CONFIG+=app_bundle
 
     release: DESTDIR = ./../bin/osx/release
     debug:   DESTDIR = ./../bin/osx/debug
@@ -80,12 +81,6 @@ unix:macx { # OSX
     #deployment
     QMAKE_INFO_PLIST =  $$PWD/resources/Info.plist
     ICON = $$PWD/resources/rdm.icns
-
-    release {
-        CRASHREPORTER_APP.files = $$DESTDIR/crashreporter
-        CRASHREPORTER_APP.path = Contents/MacOS
-        QMAKE_BUNDLE_DATA += CRASHREPORTER_APP
-    }
 }
 
 unix:!macx { # ubuntu & debian
